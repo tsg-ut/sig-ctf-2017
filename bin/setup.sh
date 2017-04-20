@@ -8,22 +8,22 @@ BASE_ADDR="/home/vagrant/ctf-tools/"
 PREFIX="/install"
 
 lines=(
-#"angr"
-#"bindead"
-#"checksec"
-#"df"
-#"gdb-heap"
-#"gdb"
-#"hash-identifier"
-#"hashpump-partialhash"
-#"hashpump"
-#"libheap"
-#"peda"
-#"pwndbg"
+"angr"
+"bindead"
+"checksec"
+"df"
+"gdb-heap"
+"gdb"
+"hash-identifier"
+"hashpump-partialhash"
+"hashpump"
+"libheap"
+"peda"
+"pwndbg"
 "pwntools"
-#"python-paddingoracle"
-#"python-pin"
-#"rp++"
+"python-paddingoracle"
+"python-pin"
+"rp++"
 )
 
 sudo apt-get install build-essential g++
@@ -37,8 +37,6 @@ source /usr/local/bin/virtualenvwrapper.sh
 export PATH=/home/vagrant/ctf-tools/bin/:$PATH
 echo "export PATH=\"/home/vagrant/ctf-tools/bin:\$PATH\"" >> ~/.bashrc
 echo "source ctf-tools-venv-activate" >> ~.bashrc
-
-
 
 # IFS=$'\n' lines=($(cat tool_list))
 for line in ${lines[@]}; do
