@@ -12,7 +12,8 @@ SCRIPT
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.hostname = "sig-ctf-2017"
-  config.vm.provision "shell", privileged: false, inline: $bootstrap
+  # config.vm.provision "shell", privileged: false, inline: $bootstrap
+  config.vm.provision :shell, :path => "bin/setup.sh", :privileged => false
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
   end
