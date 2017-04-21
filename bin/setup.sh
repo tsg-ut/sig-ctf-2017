@@ -31,8 +31,6 @@ echo "source ctf-tools-venv-activate" >> ~/.bashrc
 
 # IFS=$'\n' lines=($(cat tool_list))
 for line in ${lines[@]}; do
-        ret=$BASE_ADDR$line$PREFIX
-            $ret
-        done
-
-)
+    ret=$BASE_ADDR$line$PREFIX
+    $ret
+done
