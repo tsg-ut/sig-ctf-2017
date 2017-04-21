@@ -2,7 +2,7 @@
 sudo apt-get update
 
 sudo apt-get install build-essential g++
-sudo apt-get install gdb, socat
+sudo apt-get install gdb socat
 sudo apt-get -y install python2.7 python-pip python-dev libssl-dev libffi-dev
 sudo pip install virtualenv virtualenvwrapper
 sudo pip install --upgrade pwntools
