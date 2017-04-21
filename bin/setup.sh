@@ -1,24 +1,11 @@
 #!/bin/bash
 sudo apt-get update
-sudo apt-get -fuy -o Dpkg::Options::='--force-confold' install git
-git clone https://github.com/zardus/ctf-tools.git /home/vagrant/ctf-tools/
-
-cd "/home/vagrant/ctf-tools/bin"
-BASE_ADDR="/home/vagrant/ctf-tools/"
-PREFIX="/install"
 
 sudo apt-get install build-essential g++
-sudo apt-get install gdb
+sudo apt-get install gdb, socat
 sudo apt-get -y install python2.7 python-pip python-dev libssl-dev libffi-dev
 sudo pip install virtualenv virtualenvwrapper
 sudo pip install --upgrade pwntools
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
-
-export PATH=/home/vagrant/ctf-tools/bin/:$PATH
-echo "export PATH=\"/home/vagrant/ctf-tools/bin:\$PATH\"" >> ~/.bashrc
-echo "source ctf-tools-venv-activate" >> ~/.bashrc
 
 mkdir ~/programs
 mkdir ~/bin
@@ -31,12 +18,6 @@ cd ~/programs
 # peda
 git clone https://github.com/longld/peda.git
 echo "source ~/programs/peda/peda.py" >> ~/.gdbinit
-
-# pwndbg
-cd ~/programs
-git clone https://github.com/pwndbg/pwndbg
-cd pwndbg
-./setup.sh
 
 cd ~/programs
 
@@ -51,8 +32,9 @@ mv rp-lin-x86 ~/bin/
 
 # checksec
 cd ~/programs
-git clone  https://github.com/slimm609/checksec.sh
-mv checksec.sh ~/bin/checksec
+wget https://github.com/slimm609/checksec.sh/archive/1.6.tar.gz
+tar zxvf 1.6.tar.gz
+mv checksec.sh-1.6/checksec ~/bin/checksec.sh
 
 
 cd ~/programs
