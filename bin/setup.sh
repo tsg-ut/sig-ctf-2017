@@ -7,32 +7,9 @@ cd "/home/vagrant/ctf-tools/bin"
 BASE_ADDR="/home/vagrant/ctf-tools/"
 PREFIX="/install"
 
-<<<<<<< HEAD
-=======
-lines=(
-"angr"
-"bindead"
-"checksec"
-"df"
-"gdb-heap"
-"gdb"
-"hash-identifier"
-"hashpump-partialhash"
-"hashpump"
-"libheap"
-"peda"
-"pwndbg"
-"pwntools"
-"python-paddingoracle"
-"python-pin"
-"rp++"
-)
-
->>>>>>> parent of 2b22ebc... Modify Typo
 sudo apt-get install build-essential g++
 sudo apt-get install gdb
 sudo apt-get -y install python2.7 python-pip python-dev libssl-dev libffi-dev
-sudo apt-get -y install python3-pip
 sudo pip install virtualenv virtualenvwrapper
 sudo pip install --upgrade pwntools
 export WORKON_HOME=$HOME/.virtualenvs
@@ -41,7 +18,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 export PATH=/home/vagrant/ctf-tools/bin/:$PATH
 echo "export PATH=\"/home/vagrant/ctf-tools/bin:\$PATH\"" >> ~/.bashrc
-echo "source ctf-tools-venv-activate" >> ~.bashrc
+echo "source ctf-tools-venv-activate" >> ~/.bashrc
 
 mkdir ~/programs
 mkdir ~/bin
@@ -87,3 +64,4 @@ sudo mv libheap.py __init__.py /usr/local/lib/python3.4/dist-packages/libheap/
 echo -e 'define heap\n  python from libheap import *\nend' >> ~/.gdbinit
 
 cd ~/programs
+
