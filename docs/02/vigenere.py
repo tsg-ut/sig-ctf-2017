@@ -1,7 +1,7 @@
 # coding:utf-8
 import sys
 
-init_key = "Hello"
+init_key = "Hello".upper()
 
 def gen_key(key, length):
     len_key = len(key)
