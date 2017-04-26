@@ -8,14 +8,12 @@ def gen_key(key, length):
     pad = length % len_key
     return (key * (length // len_key)) + key[:pad]
 
-def vin_crypt(ipt, decode=False):
-    for x in ipt:
-        if ord(x) < 0x41 or ord(x) > 0x5a:
-            raise Exception("Alphabets only")
 
+def vin_crypt(ipt, decode=False):
     key = gen_key(init_key, len(ipt))
 
-    x_vec = [ord(x) - 0x41 for x in ipt]
+    x_vec = [x - 0x41 for x in map(ord, ipt)
+            if x > 0x40 and x < 0x5b]
     key_vec = [ord(x) - 0x41 for x in key]
 
     if decode:
