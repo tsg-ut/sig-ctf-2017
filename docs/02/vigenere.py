@@ -1,6 +1,11 @@
 # coding:utf-8
 import sys
 
+
+if __name__ == '__main__':
+    pass
+
+
 init_key = "Hello".upper()
 
 def gen_key(key, length):
@@ -31,11 +36,11 @@ def main():
     if argv[1] == "e":
         print("Input: ", end="")
         ipt = input().upper()
-        print(vin_crypt(ipt))
+        print("Output:", vin_crypt(ipt))
     elif argv[1] == "d":
         print("Input: ", end="")
         ipt = input().upper()
-        print(vin_crypt(ipt, True))
+        print("Output:", vin_crypt(ipt, True))
     else:
         return
 
