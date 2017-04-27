@@ -6,7 +6,7 @@ if __name__ == '__main__':
     pass
 
 
-init_key = "Hello".upper()
+init_key = "CRYPTO".upper()
 
 def gen_key(key, length):
     len_key = len(key)
@@ -22,9 +22,9 @@ def vin_crypt(ipt, decode=False):
     key_vec = [ord(x) - 0x41 for x in key]
 
     if decode:
-        c_vec = [(x + y) % 26 for x, y in zip(x_vec, key_vec)]
-    else:
         c_vec = [(x - y) % 26 for x, y in zip(x_vec, key_vec)]
+    else:
+        c_vec = [(x + y) % 26 for x, y in zip(x_vec, key_vec)]
     c = ''.join([chr(x + 0x41) for x in c_vec])
     return c
 
@@ -43,6 +43,7 @@ def main():
         print("Output:", vin_crypt(ipt, True))
     else:
         return
+
 
 if __name__ == '__main__':
     main()
