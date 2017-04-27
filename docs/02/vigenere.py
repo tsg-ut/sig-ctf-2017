@@ -6,7 +6,7 @@ if __name__ == '__main__':
     pass
 
 
-init_key = "CRYPTO".upper()
+init_key = "3feVJy69imM".upper()
 
 def gen_key(key, length):
     len_key = len(key)
