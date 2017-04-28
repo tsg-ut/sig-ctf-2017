@@ -78,7 +78,6 @@ for i in range(0, len(encrypted) - 2, 4):
     upper_bits = bases.index(shf) & 0x11
     tmp = key_l[(i+3) % keylength]
     if upper_bits == 0:
-        print(c, key, shf)
         for char in tmp[:]:
             a = shift(encrypted[i+3], char, rev=True)
             idx = bases.index(a)
@@ -90,6 +89,7 @@ for i in range(0, len(encrypted) - 2, 4):
             idx = bases.index(a)
             if idx == 63:
                 tmp.remove(char)
+
 
 ## 以下手動で調節
 ## 冒頭の""SKU iA a'JaFangse""に着目し、
@@ -113,6 +113,7 @@ for char in tmp[:]:
         tmp.remove(char)
 
 
-print(key_l)
-print("Key(repr):", ''.join([x[0] for x in key_l]))
-
+key = ''.join([x[0] for x in key_l])
+print("Key(repr):", key)
+encrypted = open(filename, "r").read()
+print("[Plain Text]\n" + decrypt(encrypted, key))
