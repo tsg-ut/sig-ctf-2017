@@ -50,4 +50,4 @@ with open("encrypted", "rb") as f:
 
 tmp = rsa2.decrypt(enc)
 flag = rsa1.decrypt(tmp)
-print(long_to_bytes(flag))
+print(long_to_bytes(flag).split("\0")[0])
