@@ -17,3 +17,7 @@ tar xvzf RSA-Keygen.tar.gz -C problem2
 
 mv RSA-Keygen.tar.gz problem2/
 
+wget http://files.quals.seccon.jp/AlphaComplex1.zip
+unzip AlphaComplex1.zip
+mv AlphaComplex1 problem3
+mv AlphaComplex1.zip problem3
