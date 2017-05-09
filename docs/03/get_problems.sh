@@ -21,3 +21,9 @@ wget http://files.quals.seccon.jp/AlphaComplex1.zip
 unzip AlphaComplex1.zip
 mv AlphaComplex1 problem3
 mv AlphaComplex1.zip problem3
+
+
+mkdir problem4
+cd problem4
+wget https://s3.amazonaws.com/hackthevote/best_rsa.878a518bf7012add6d071f3b52562e8b102e72a0cc815aee7cb007cdc03c7714.txt
+cd ../
