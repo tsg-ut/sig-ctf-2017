@@ -4,7 +4,7 @@
 
 * [１回-Introduction](https://github.com/tsg-ut/sig-ctf-2017/tree/master/docs/01)
 * [２回-Classical Cipher](https://github.com/tsg-ut/sig-ctf-2017/tree/master/docs/02)
-* [3回-RSA](https://github.com/tsg-ut/sig-ctf-2017/tree/master/docs/03)
+* [３回-RSA](https://github.com/tsg-ut/sig-ctf-2017/tree/master/docs/03)
 
 
 # Usage
