@@ -6,6 +6,15 @@
 * [２回-Classical Cipher](https://github.com/tsg-ut/sig-ctf-2017/tree/master/docs/02)
 * [３回-RSA](https://github.com/tsg-ut/sig-ctf-2017/tree/master/docs/03)
 
+### 資料の綺麗な表示の仕方メモ
+
+MathJaxがGithub上だとつらい感じになるので、例えば第三回の場合
+
+```
+https://stackedit.io/viewer#!url=https://raw.githubusercontent.com/tsg-ut/sig-ctf-2017/master/docs/03/README.md
+```
+
+のように```https://stackedit.io/viewer#!url=```をつけて、markdownのリンクを後ろにつけて表示すると綺麗に見える
 
 # Usage
 
