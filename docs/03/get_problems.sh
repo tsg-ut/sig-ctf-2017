@@ -17,13 +17,12 @@ tar xvzf RSA-Keygen.tar.gz -C problem2
 
 mv RSA-Keygen.tar.gz problem2/
 
-wget http://files.quals.seccon.jp/AlphaComplex1.zip
-unzip AlphaComplex1.zip
-mv AlphaComplex1 problem3
-mv AlphaComplex1.zip problem3
+mkdir problem3
+cd problem3
 
+wget https://github.com/ctfs/write-ups-2015/raw/master/hack-lu-ctf-2015/crypto/creative-cheating/dump_2bd6da8de87c6f1170dec710f7268a16.pcapng
 
-mkdir problem4
-cd problem4
-wget https://s3.amazonaws.com/hackthevote/best_rsa.878a518bf7012add6d071f3b52562e8b102e72a0cc815aee7cb007cdc03c7714.txt
+wget https://raw.githubusercontent.com/ctfs/write-ups-2015/master/hack-lu-ctf-2015/crypto/creative-cheating/README.md
+
 cd ../
+
