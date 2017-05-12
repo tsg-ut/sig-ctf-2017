@@ -24,9 +24,9 @@ RSA暗号とは、何かについて書かれた記事は山ほどあると思�
 ### 同値関係
 
 　同値関係$\sim$とは、
-*  反射律  $a\sim a$
-*  対称律  $a \sim b \Longrightarrow b \sim a$
-*  推移律  $a \sim b, b \sim c \Longrightarrow a \sim c$
+* 反射律  $a\sim a$
+* 対称律  $a \sim b \Longrightarrow b \sim a$
+* 推移律  $a \sim b, b \sim c \Longrightarrow a \sim c$
 が成立するものである。例えば、自然数mのあまりの関係、すなわち合同式は同値関係である。
 
 ### 群
