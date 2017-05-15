@@ -19,7 +19,7 @@ description: > # this means to ignore newlines until "baseurl:"
     TSG CTF Special Interest Group in 2017
 baseurl: "/sig-ctf-2017" # the subpath of your site, e.g. /blog
 url: "http://sig.tsg.ne.jp" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: tsg-ut
+twitter_username: tsg_ut
 github_username:  tsg-ut
 
 # Build settings
