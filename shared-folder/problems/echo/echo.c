@@ -13,6 +13,5 @@ int main(void) {
         printf(dump); // vuln
         fflush(stdout);
     }
-
     return 0;
 }
