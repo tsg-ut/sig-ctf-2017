@@ -6,10 +6,10 @@ from check import checkpoint
 
 
 def sub_bytes(state):
-    ret = [12323212412421412412] # Dummy
+    ret = []
     for b in state:
         # Implement!
-        pass
+        ret.append(vec2num(add(mul(A, num2vec(inv(b))), c)))
     return ret
 
 
@@ -27,8 +27,9 @@ def inv_sub_bytes(state):
 def shift_rows(state):
     ret = []
     for i in range(len(state) // 4):
-        # Implement!
-        pass
+        vec = state[4 * i:4 * (i+1)]
+        for i in range(4):
+            ret.append(vec[4*i: 4*(i+1)])
     return ret
 
 
@@ -101,7 +102,6 @@ def key_expansion(key, Nb, Nr):
 
 
 Nr = 10
-Nk = 4
 Nb = 4
 
 

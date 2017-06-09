@@ -215,11 +215,13 @@ def key_expansion(key, Nb, Nr):
             tmp = subword(tmp)
         tmp2 = []
         for j in range(4):
-            tmp2.append(ret[i - Nk][0] ^ tmp[0])
-        ret.append(tmp)
+            tmp2.append(ret[i - Nk][j] ^ tmp[j])
+        ret.append(tmp2)
     return ret
 
 k = key_expansion(range(1, 17), 4, 10)
+print(k)
+
 assert len(k) == 44
 
 def encrypt(state, key):
