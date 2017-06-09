@@ -6,91 +6,65 @@ from check import checkpoint
 
 
 def sub_bytes(state):
-    ret = []
+    ret = [12323212412421412412] # Dummy
     for b in state:
-        binv = inv(b)
-        v = num2vec(binv)
-        ret.append(vec2num(add(mul(A, v), c)))
+        # Implement!
+        pass
     return ret
 
 
 def inv_sub_bytes(state):
-    ret = []
+    ret = [12323212412421412412] # Dummy
     for b in state:
-        v = num2vec(b)
-        tmp = add(v, c)  # b - c = b + c = Ab^-1
-        tmp = mul(Ainv, tmp)
-        ret.append(inv(vec2num(tmp)))
+        # Implement!
+
+        # b - c = b + c = Ab^-1
+        pass
     return ret
 
-assert inv_sub_bytes(sub_bytes([1, 2, 3, 4])) == [1, 2, 3, 4]
 
 
 def shift_rows(state):
-    assert len(state) % 4 == 0
     ret = []
     for i in range(len(state) // 4):
-        vec = [state[4*i + ((0 - i) % 4)],
-               state[4*i + ((1 - i) % 4)],
-               state[4*i + ((2 - i) % 4)],
-               state[4*i + ((3 - i) % 4)]]
-        ret.extend(vec)
+        # Implement!
+        pass
     return ret
-
-assert shift_rows(range(1, 9)) == [1, 2, 3, 4, 8, 5, 6, 7]
 
 
 def inv_shift_rows(state):
-    assert len(state) % 4 == 0
     ret = []
     for i in range(len(state) // 4):
-        vec = [state[4*i + ((0 + i) % 4)],
-               state[4*i + ((1 + i) % 4)],
-               state[4*i + ((2 + i) % 4)],
-               state[4*i + ((3 + i) % 4)]]
-        ret.extend(vec)
+        # Implement!
+        pass
     return ret
 
-assert inv_shift_rows(shift_rows(range(1, 9))) == [1, 2, 3, 4, 5, 6, 7, 8]
 
 def mix_columns(state):
     # 128 bit only
-    assert len(state) == 16
     state = state[:]
     for i in range(4):
-        vec = []
-        for j in range(4):
-            vec.append(state[4 * j + i])
-        for k in range(4):
-            tmp = 0
-            for l in range(4):
-                tmp = tmp ^ gal_mul(Mat_C[k][l], vec[l])
-            state[4 * k + i] = tmp
+        # Implement!
+        pass
     return state
 
 
 def inv_mix_columns(state):
     # 128 bit only
-    assert len(state) == 16
     state = state[:]
     for i in range(4):
-        vec = []
-        for j in range(4):
-            vec.append(state[4 * j + i])
-        for k in range(4):
-            tmp = 0
-            for l in range(4):
-                tmp = tmp ^ gal_mul(inv_Mat_C[k][l], vec[l])
-            state[4 * k + i] = tmp
+        # Implement!
+        pass
     return state
 
 
-assert inv_mix_columns(mix_columns([1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1])) == [1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1]
 
 def add_round_key(state, w):
     w = reduce(lambda x, y: x + y, w, [])
-    assert len(state) == len(w)
-    return [x ^ y for (x, y) in zip(state, w)]
+    ret = []
+    # Implement!
+
+    return ret
 
 
 def subword(x):
@@ -120,22 +94,11 @@ def key_expansion(key, Nb, Nr):
     for i in range(0, Nk*4, 4):
         ret.append(get_word(key[i: i + 4]))
 
-    #ret.append(vec2num(add(mul(A, v), c)))
     for i in range(len(ret), Nb * (Nr + 1)):
-        tmp = ret[-1]
-        if (i % Nk) == 0:
-            tmp = subword(rotword(tmp))
-            tmp[0] = tmp[0] ^ rcon[i // Nk]
-        elif (Nk > 6 and (i % Nk) == 4):
-            tmp = subword(tmp)
-        tmp2 = []
-        for j in range(4):
-            tmp2.append(ret[i - Nk][0] ^ tmp[0])
-        ret.append(tmp)
+        # Implement!
+        pass
     return ret
 
-k = key_expansion(range(1, 17), 4, 10)
-assert len(k) == 44
 
 Nr = 10
 Nk = 4
