@@ -1,7 +1,8 @@
 # coding:utf-8
 from __future__ import print_function, division
-from tools import mul, add, inv, num2vec, vec2num
+from tools import mul, add, inv, num2vec, vec2num, gal_mul, str2vec
 from constants import A, Ainv, c, rcon, Mat_C, inv_Mat_C
+from check import checkpoint
 
 
 def sub_bytes(state):
@@ -52,21 +53,6 @@ def inv_shift_rows(state):
 
 assert inv_shift_rows(shift_rows(range(1, 9))) == [1, 2, 3, 4, 5, 6, 7, 8]
 
-
-# https://en.wikipedia.org/wiki/Finite_field_arithmetic#Rijndael.27s_finite_field
-def gal_mul(a, b):
-    p = 0
-    for i in range(8):
-        if b & 1 == 1:
-            p ^= a
-        b = b >> 1
-        carry = a & 0b10000000
-        a = a << 1
-        if carry == 0b10000000:
-            a ^= 0x1b
-    return p % 256
-
-
 def mix_columns(state):
     # 128 bit only
     assert len(state) == 16
@@ -75,13 +61,13 @@ def mix_columns(state):
         vec = []
         for j in range(4):
             vec.append(state[4 * j + i])
-        ret = []
         for k in range(4):
             tmp = 0
             for l in range(4):
                 tmp = tmp ^ gal_mul(Mat_C[k][l], vec[l])
             state[4 * k + i] = tmp
     return state
+
 
 def inv_mix_columns(state):
     # 128 bit only
@@ -151,35 +137,26 @@ def key_expansion(key, Nb, Nr):
 k = key_expansion(range(1, 17), 4, 10)
 assert len(k) == 44
 
+Nr = 10
+Nk = 4
+Nb = 4
+
+
 def encrypt(state, key):
-    #state = map(ord, "ABCDEFGHIJKLMNOP")
-    Nr = 10
-    Nk = 4
-    Nb = 4
     key = key_expansion(key, Nb, Nr)
     state = add_round_key(state, key[:Nb])
     for r in range(1, Nr):
-        #print(state, len(state))
         state = sub_bytes(state)
-        #print("sub_bytes", state, len(state))
         state = shift_rows(state)
-        #print("shift_rows", state, len(state))
         state = mix_columns(state)
-        #print("mix_col", state, len(state))
-        state = add_round_key(state, key[r * Nb: (r + 1) *Nb])
-        #print("addr", state, len(state))
-
+        state = add_round_key(state, key[r * Nb: (r + 1) * Nb])
     state = sub_bytes(state)
     state = shift_rows(state)
     state = add_round_key(state, key[Nr * Nb:])
-    #print(state)
-    #print(''.join(map(hex, state)).replace("0x", ""))
     return state
 
+
 def decrypt(state, key):
-    Nr = 10
-    Nk = 4
-    Nb = 4
     key = key_expansion(key, Nb, Nr)
     state = add_round_key(state, key[Nr*Nb:])
     for r in range(Nr - 1, 0, -1):
@@ -191,20 +168,10 @@ def decrypt(state, key):
     state = inv_shift_rows(state)
     state = inv_sub_bytes(state)
     state = add_round_key(state, key[:Nb])
-    #print(state)
-    #print(''.join(map(hex, state)).replace("0x", ""))
     return state
 
 
 
-def main():
-    state = map(ord, "ABCDEFGHIJKLMNOP")
-    key = map(ord, "moratoriummormor")
-    print("Before:", state)
-    c = encrypt(state, key)
-    print("After:", decrypt(c, key))
 
-
-
-main()
-
+if __name__ == "__main__":
+    checkpoint()

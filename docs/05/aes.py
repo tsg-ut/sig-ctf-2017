@@ -64,6 +64,7 @@ def sub_bytes(state):
         v = num2vec(binv)
         ret.append(vec2num(add(mul(A, v), c)))
     return ret
+print(sub_bytes([1, 2, 3, 4]))
 
 def inv_sub_bytes(state):
     ret = []
@@ -139,13 +140,14 @@ def mix_columns(state):
         vec = []
         for j in range(4):
             vec.append(state[4 * j + i])
-        ret = []
         for k in range(4):
             tmp = 0
             for l in range(4):
                 tmp = tmp ^ gal_mul(Mat_C[k][l], vec[l])
             state[4 * k + i] = tmp
     return state
+
+print(mix_columns(range(16)))
 
 def inv_mix_columns(state):
     # 128 bit only
@@ -171,7 +173,7 @@ def add_round_key(state, w):
     assert len(state) == len(w)
     return [x ^ y for (x, y) in zip(state, w)]
 
-#assert (add_round_key([1,2,3,4], [5,6,7,8])) == [4, 4, 4, 12]
+print(add_round_key(range(16), [range(4), range(4), range(4), range(4)]))
 
 def subword(x):
     assert len(x) == 4
@@ -271,8 +273,8 @@ def main():
     key = map(ord, "moratoriummormor")
     print("Before:", state)
     c = encrypt(state, key)
+    print(c)
     print("After:", decrypt(c, key))
-
 
 
 main()
