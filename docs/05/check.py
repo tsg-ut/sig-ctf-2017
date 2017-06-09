@@ -42,7 +42,7 @@ def checkpoint():
 
     state = map(ord, "ABCDEFGHIJKLMNOP")
     key = map(ord, "moratoriummormor")
-    flag = encrypt(state, key) == [102, 38, 66, 6, 127, 187, 71, 229, 18, 191, 211, 61, 159, 96, 147, 138]
+    flag = encrypt(state, key) == [202, 244, 61, 176, 117, 75, 101, 85, 160, 208, 75, 109, 240, 198, 240, 229]
     test("encrypt", flag)
 
     flag = decrypt(encrypt(state, key), key) == state
