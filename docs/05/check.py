@@ -29,6 +29,7 @@ def checkpoint():
     k = key_expansion(range(1, 17), 4, 10)
     flag = [66, 157, 71, 129] == k[4]
     flag &= [71, 155, 64, 137] == k[5]
+    test("key_expansion", flag)
 
     flag = add_round_key(range(16), [range(4), range(4), range(4), range(4)]) == [0, 0, 0, 0, 4, 4, 4, 4, 8, 8, 8, 8, 12, 12, 12, 12]
     test("add_round_key", flag)
