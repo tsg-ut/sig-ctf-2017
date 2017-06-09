@@ -16,40 +16,69 @@ def test(s, flag):
 
 
 def checkpoint():
-    flag = sub_bytes([1, 2, 3, 4]) == [55, 147, 79, 211]
-    flag &= sub_bytes(range(64))[0] == 198
+    try:
+        flag = sub_bytes([1, 2, 3, 4]) == [55, 147, 79, 211]
+        flag &= sub_bytes(range(64))[0] == 198
+    except:
+        flag = False
     test("sub_bytes", flag)
 
-    flag = shift_rows(range(1, 9)) == [1, 2, 3, 4, 8, 5, 6, 7]
+    try:
+        flag = shift_rows(range(1, 9)) == [1, 2, 3, 4, 8, 5, 6, 7]
+    except:
+        flag = False
     test("shift_rows", flag)
 
-    flag = mix_columns(range(16)) == [8, 9, 10, 11, 28, 29, 30, 31, 0, 1, 2, 3, 20, 21, 22, 23]
+    try:
+        flag = mix_columns(range(16)) == [8, 9, 10, 11, 28, 29, 30, 31, 0, 1, 2, 3, 20, 21, 22, 23]
+    except:
+        flag = False
     test("mix_columns", flag)
 
-    k = key_expansion(range(1, 17), 4, 10)
-    flag = [66, 157, 71, 129] == k[4]
-    flag &= [71, 155, 64, 137] == k[5]
+    try:
+        k = key_expansion(range(1, 17), 4, 10)
+        flag = [66, 157, 71, 129] == k[4]
+        flag &= [71, 155, 64, 137] == k[5]
+    except:
+        flag = False
     test("key_expansion", flag)
 
-    flag = add_round_key(range(16), [range(4), range(4), range(4), range(4)]) == [0, 0, 0, 0, 4, 4, 4, 4, 8, 8, 8, 8, 12, 12, 12, 12]
+    try:
+        flag = add_round_key(range(16), [range(4), range(4), range(4), range(4)]) == [0, 0, 0, 0, 4, 4, 4, 4, 8, 8, 8, 8, 12, 12, 12, 12]
+    except:
+        flag = False
     test("add_round_key", flag)
 
-    flag = inv_mix_columns(mix_columns([1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1])) == [1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1]
+    try:
+        flag = inv_mix_columns(mix_columns([1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1])) == [1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1]
+    except:
+        flag = False
     test("inv_mix_columns", flag)
 
-
-    flag = inv_sub_bytes(sub_bytes([1, 2, 3, 4])) == [1, 2, 3, 4]
+    try:
+        flag = inv_sub_bytes(sub_bytes([1, 2, 3, 4])) == [1, 2, 3, 4]
+    except:
+        flag = False
     test("inv_sub_bytes", flag)
 
-    flag = inv_shift_rows(shift_rows(range(1, 9))) == [1, 2, 3, 4, 5, 6, 7, 8]
+    try:
+        flag = inv_shift_rows(shift_rows(range(1, 9))) == [1, 2, 3, 4, 5, 6, 7, 8]
+    except:
+        flag = False
     test("inv_shift_rows", flag)
 
-    state = map(ord, "ABCDEFGHIJKLMNOP")
-    key = map(ord, "moratoriummormor")
-    flag = encrypt(state, key) == [202, 244, 61, 176, 117, 75, 101, 85, 160, 208, 75, 109, 240, 198, 240, 229]
+    try:
+        state = map(ord, "ABCDEFGHIJKLMNOP")
+        key = map(ord, "moratoriummormor")
+        flag = encrypt(state, key) == [202, 244, 61, 176, 117, 75, 101, 85, 160, 208, 75, 109, 240, 198, 240, 229]
+    except:
+        flag = False
     test("encrypt", flag)
 
-    flag = decrypt(encrypt(state, key), key) == state
+    try:
+        flag = decrypt(encrypt(state, key), key) == state
+    except:
+        flag = False
     test("decrypt", flag)
 
 if __name__ == '__main__':

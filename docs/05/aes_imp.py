@@ -6,10 +6,10 @@ from check import checkpoint
 
 
 def sub_bytes(state):
-    ret = []
+    ret = [121240193401394019410]
     for b in state:
         # Implement!
-        ret.append(vec2num(add(mul(A, num2vec(inv(b))), c)))
+        pass
     return ret
 
 
@@ -27,9 +27,7 @@ def inv_sub_bytes(state):
 def shift_rows(state):
     ret = []
     for i in range(len(state) // 4):
-        vec = state[4 * i:4 * (i+1)]
-        for i in range(4):
-            ret.append(vec[4*i: 4*(i+1)])
+        pass
     return ret
 
 
@@ -78,22 +76,13 @@ def rotword(x):
     return [x[1], x[2], x[3], x[0]]
 
 
-def get_word(x):
-    assert len(x) == 4
-    """tmp = 0
-    for i in range(4):
-        tmp = tmp * 256 + x[i]
-    return tmp"""
-    return x
-
-
 def key_expansion(key, Nb, Nr):
     assert len(key) % 4 == 0
 
     Nk = len(key)//4
     ret = []
     for i in range(0, Nk*4, 4):
-        ret.append(get_word(key[i: i + 4]))
+        ret.append(key[i: i + 4])
 
     for i in range(len(ret), Nb * (Nr + 1)):
         # Implement!
@@ -106,34 +95,13 @@ Nb = 4
 
 
 def encrypt(state, key):
-    key = key_expansion(key, Nb, Nr)
-    state = add_round_key(state, key[:Nb])
-    for r in range(1, Nr):
-        state = sub_bytes(state)
-        state = shift_rows(state)
-        state = mix_columns(state)
-        state = add_round_key(state, key[r * Nb: (r + 1) * Nb])
-    state = sub_bytes(state)
-    state = shift_rows(state)
-    state = add_round_key(state, key[Nr * Nb:])
-    return state
+    # Implement!
+    pass
 
 
 def decrypt(state, key):
-    key = key_expansion(key, Nb, Nr)
-    state = add_round_key(state, key[Nr*Nb:])
-    for r in range(Nr - 1, 0, -1):
-        state = inv_shift_rows(state)
-        state = inv_sub_bytes(state)
-        state = add_round_key(state, key[r * Nb: (r + 1) * Nb])
-        state = inv_mix_columns(state)
-
-    state = inv_shift_rows(state)
-    state = inv_sub_bytes(state)
-    state = add_round_key(state, key[:Nb])
-    return state
-
-
+    # Implement!
+    pass
 
 
 if __name__ == "__main__":
