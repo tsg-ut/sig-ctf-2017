@@ -42,10 +42,6 @@ c = [1, 1, 0, 0, 0, 1, 1, 0]
 binv = [1, 1, 1, 1, 0, 1, 1, 0]
 
 
-#print(mul(A, binv))
-#print(add(mul(A, binv), c))
-
-
 inv_mat = [0, 1, 141,246,203,82,123,209,232,79,41,192,176,225,229,199,116,180,170,75,153,43,96,95,88,63,253,204,255,64,238,178,58,110,90,241,85,77,168,201,193,10,152,21,48,68,162,194,44,69,146,108,243,57,102,66,242,53,32,111,119,187,89,25,29,254,55,103,45,49,245,105,167,100,171,19,84,37,233,9,237,92,5,202,76,36,135,191,24,62,34,240,81,236,97,23,22,94,175,211,73,166,54,67,244,71,145,223,51,147,33,59,121,183,151,133,16,181,186,60,182,112,208,6,161,250,129,130,131,126,127,128,150,115,190,86,155,158,149,217,247,2,185,164,222,106,50,109,216,138,132,114,42,20,159,136,249,220,137,154,251,124,46,195,143,184,101,72,38,200,18,74,206,231,210,98,12,224,31,239,17,117,120,113,165,142,118,61,189,188,134,87,11,40,47,163,218,212,228,15,169,39,83,4,27,252,172,230,122,7,174,99,197,219,226,234,148,139,196,213,157,248,144,107,177,13,214,235,198,14,207,173,8,78,215,227,93,80,30,179,91,35,56,52,104,70,3,140,221,156,125,160,205,26,65,28]
 def inv(b):
     return inv_mat[b]
@@ -57,6 +53,12 @@ def num2vec(b):
 def vec2num(v):
     return int(''.join(map(str, v)), 2)
 
+def vec2str(v):
+    return ''.join(map(chr, v))
+
+def str2vec(s):
+    return [ord(x) for x in s]
+
 def sub_bytes(state):
     ret = []
     for b in state:
@@ -64,7 +66,6 @@ def sub_bytes(state):
         v = num2vec(binv)
         ret.append(vec2num(add(mul(A, v), c)))
     return ret
-print(sub_bytes([1, 2, 3, 4]))
 
 def inv_sub_bytes(state):
     ret = []
@@ -147,7 +148,6 @@ def mix_columns(state):
             state[4 * k + i] = tmp
     return state
 
-print(mix_columns(range(16)))
 
 def inv_mix_columns(state):
     # 128 bit only
@@ -173,7 +173,6 @@ def add_round_key(state, w):
     assert len(state) == len(w)
     return [x ^ y for (x, y) in zip(state, w)]
 
-print(add_round_key(range(16), [range(4), range(4), range(4), range(4)]))
 
 def subword(x):
     assert len(x) == 4
@@ -220,7 +219,6 @@ def key_expansion(key, Nb, Nr):
     return ret
 
 k = key_expansion(range(1, 17), 4, 10)
-print(k)
 
 assert len(k) == 44
 
@@ -271,12 +269,12 @@ def decrypt(state, key):
 
 
 def main():
-    state = map(ord, "ABCDEFGHIJKLMNOP")
-    key = map(ord, "moratoriummormor")
+    state = str2vec("ABCDEFGHIJKLMNOP")
+    key = str2vec("moratoriummormor")
     print("Before:", state)
     c = encrypt(state, key)
-    print(c)
-    print("After:", decrypt(c, key))
+    print(vec2str(c))
+    print("After:", vec2str(decrypt(c, key)))
 
 
 main()
