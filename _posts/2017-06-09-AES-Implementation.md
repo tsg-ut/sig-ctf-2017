@@ -81,7 +81,9 @@ $$
 $$
 b' = Ab^{-1} + c
 $$
+
 $A$ : 8 x 8 の正則な定行列
+
 $c$ : 定ベクトル
 
 $b^{-1}$というのは、におけるb逆数であり、また、A,cとの演算は、bをビットベクトルと見たときのGF(2)における演算である。したがって、足し算は、排他的論理和と同じになる。
@@ -215,9 +217,10 @@ $$
 
 関連ファイルは、[sig-ctf-2017/docs/05](https://github.com/tsg-ut/sig-ctf-2017/tree/master/docs/05)にあるので落として欲しい。
 
-実装練習に穴あきになっているファイルが[aes_imp.py](https://github.com/tsg-ut/sig-ctf-2017/blob/master/docs/05/aes_imp.py)である。これを埋めて行って欲しい。また、関数が正しく動いているかどうかは、[check.py](https://github.com/tsg-ut/sig-ctf-2017/blob/master/docs/05/check.py)を実行すると確認ができる。上記で説明した定数群の定義や、有限体に関する関数は、[constants.py](https://github.com/tsg-ut/sig-ctf-2017/blob/master/docs/05/constants.py)、[tools.py](https://github.com/tsg-ut/sig-ctf-2017/blob/master/docs/05/tools.py)にそれぞれある。
+実装練習に穴あきになっているファイルが[aes\_imp.py](https://github.com/tsg-ut/sig-ctf-2017/blob/master/docs/05/aes_imp.py)である。これを埋めて行って欲しい。また、関数が正しく動いているかどうかは、[check.py](https://github.com/tsg-ut/sig-ctf-2017/blob/master/docs/05/check.py)を実行すると確認ができる。上記で説明した定数群の定義や、有限体に関する関数は、[constants.py](https://github.com/tsg-ut/sig-ctf-2017/blob/master/docs/05/constants.py)、[tools.py](https://github.com/tsg-ut/sig-ctf-2017/blob/master/docs/05/tools.py)にそれぞれある。
 
-[aes.py](https://github.com/tsg-ut/sig-ctf-2017/blob/master/docs/05/aes.py)は僕の（汚い）実装である。
+[aes.py](https://github.com/tsg-ut/sig-ctf-2017/blob/master/docs/05/aes.py)は僕の（汚い）実装である。これは128bit限定で動作する
 
+## 最後に
 
 あと、僕自身のコードが仕様通りになっていない可能性がある。この場合checkも当然間違えていることになるので、その場合は、[@moratorium08](https://twitter.com/moratorium08)まで知らせて欲しいです・・・
