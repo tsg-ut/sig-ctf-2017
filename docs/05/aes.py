@@ -277,5 +277,6 @@ def main():
     print("After:", vec2str(decrypt(c, key)))
 
 
-main()
+if __name__ == '__main__':
+    main()
 
