@@ -6,16 +6,25 @@ import json
 app = Flask(__name__)
 @app.route('/')
 def index():
-    return read('index.html')
+    return open('index.html').read()
+
+@app.route('/index.js')
+def indexjs():
+    return open('index.js').read()
+
+@app.route('/problems/')
+def ret_problems():
+    return json.dumps({'problems': [{'statement': problem['statement']} for
+        problem in problems]})
 
 def write_name(problem, name):
-    filename = "solvers%d" % p
+    filename = "solvers%d" % problem
     with open(filename, 'a') as f:
         f.write(name + '\n')
 
 
 def get_names(problem):
-    filename = "solvers%d" % p
+    filename = "solvers%d" % problem
     with open(filename, 'r') as f:
         ret = f.read().strip('\n').split('\n')
     return ret
@@ -37,11 +46,12 @@ def problem(path):
     if p == -1:
         return '{"Status": 2, "Error": "problem_id error"}'
     if request.method == 'POST':
-        if problem[p]['flag'] == request.form['flag']:
+        print(request.form)
+        if problems[p]['flag'] == request.form['flag']:
             write_name(p, request.form['name'])
             return '{"Status": 1}'
         else:
-            return '{"Status": 3 "Error": "Wrong Answer."}'
+            return '{"Status": 3, "Error": "Wrong Answer."}'
 
     d = {'solvers': get_names(p), 'score': problems[p]['score']}
     return json.dumps(d)
